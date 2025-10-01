@@ -1,0 +1,48 @@
+<span id="current-opening" class="top-opening">Načítám...</span>
+
+<script>
+(function(){
+  const url = "https://petrpinka.github.io/snowlab-otviracka/schedule.json";
+  function parseHM(hm){const [h,m]=hm.split(':').map(Number);return h*60+m;}
+  function getNowParts(){const now = new Date();return {h: now.getHours(), m: now.getMinutes()};}
+  function isOpenNow(scheduleDay,h,m){
+    if(!scheduleDay) return false;
+    const nowMins=h*60+m;
+    return nowMins>=parseHM(scheduleDay.open)&&nowMins<parseHM(scheduleDay.close);
+  }
+  fetch(url).then(r=>r.json()).then(schedule=>{
+      const now = new Date();
+      const today = now.getDay();
+      const {h,m} = getNowParts();
+      const todaySchedule = schedule[today];
+      const el = document.getElementById("current-opening");
+      if(todaySchedule && isOpenNow(todaySchedule,h,m)){
+        el.innerHTML = `<span class="status-dot open"></span> OTEVŘENO <span class="opening-hours">(${todaySchedule.open} – ${todaySchedule.close})</span>`;
+        el.className = "top-opening open";
+      } else {
+        el.innerHTML = `<span class="status-dot closed"></span> ZAVŘENO`;
+        el.className = "top-opening closed";
+      }
+    })
+    .catch(()=>{
+      const el = document.getElementById("current-opening");
+      el.innerHTML = `<span class="status-dot closed"></span> Otevírací doba nedostupná`;
+      el.className = "top-opening closed";
+    });
+})();
+</script>
+
+<style>
+.top-opening {margin-left: 20px; font-weight: 600; display: inline-flex; align-items: center;}
+.top-opening.open {color: #10703a;}
+.top-opening.closed {color: #b22222;}
+.opening-hours {font-weight: normal;}
+.status-dot {display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;}
+.status-dot.open {background-color:#10703a;animation:pulseGreen 1.5s infinite;}
+.status-dot.closed {background-color:#b22222;}
+@keyframes pulseGreen {
+  0% {box-shadow:0 0 0 0 rgba(16,112,58,.6);}
+  70% {box-shadow:0 0 0 8px rgba(16,112,58,0);}
+  100% {box-shadow:0 0 0 0 rgba(16,112,58,0);}
+}
+</style>
