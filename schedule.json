@@ -1,7 +1,13 @@
 {
   "0": null,
-  "1": null,
-  "2": null,
+  "1": {
+    "open": "zav?eno",
+    "close": "zav?eno"
+  },
+  "2": {
+    "open": "zav?eno",
+    "close": "zav?eno"
+  },
   "3": {
     "open": "zav?eno",
     "close": "zav?eno"
