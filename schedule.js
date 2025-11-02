@@ -44,7 +44,7 @@
         el.innerHTML = `<span class="status-dot open"></span> OTEVŘENO&nbsp;<span class="opening-hours">(${todaySchedule.open} – ${todaySchedule.close})</span>`;
         el.className = "top-opening open";
       } else {
-        el.innerHTML = `<span class="status-dot closed"></span> ZAVŘENO&nbsp;<span class="closed-note">(Otevíráme 31. 10. 2025)</span>`;
+        el.innerHTML = `<span class="status-dot closed"></span> ZAVŘENO&nbsp;<span class="closed-note">(Po - Ne 10:00 - 18:00)</span>`;
         el.className = "top-opening closed";
       }
       placeElement(); 
