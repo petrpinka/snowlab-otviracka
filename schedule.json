@@ -27,6 +27,6 @@
     "open": "zav?eno",
     "close": "zav?eno"
   },
-  "z?vorka otev?eno": null,
-  "z?vorka zav?eno": null
+  "openNote": null,
+  "closedNote": null
 }
