@@ -24,8 +24,8 @@
     "close": "zav?eno"
   },
   "6": {
-    "open": "zav?eno",
-    "close": "zav?eno"
+    "open": "10:00",
+    "close": "18:00"
   },
   "openNote": null,
   "closedNote": null
